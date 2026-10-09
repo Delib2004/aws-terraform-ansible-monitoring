@@ -1,0 +1,7 @@
+---
+- name: Configure web server and monitoring agent
+  hosts: web
+  become: true
+  roles:
+    - nginx
+    - node_exporter

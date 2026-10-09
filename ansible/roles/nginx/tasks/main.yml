@@ -1,0 +1,20 @@
+---
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Create a simple home page
+  ansible.builtin.copy:
+    dest: /var/www/html/index.html
+    mode: "0644"
+    content: |
+      <h1>Configured by Ansible</h1>
+      <p>Host: {{ inventory_hostname }}</p>
+
+- name: Start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
